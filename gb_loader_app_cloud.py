@@ -1,6 +1,13 @@
 
 import streamlit as st, cloudpickle as cp, pandas as pd, numpy as np
 from datetime import datetime, timedelta
+import sys, traceback
+def crash_to_log(exc_type, exc, tb):
+    traceback.print_exception(exc_type, exc, tb)
+    sys.exit(1)
+sys.excepthook = crash_to_log
+print("📣 loader script reached top")
+
 
 @st.cache_resource
 def load_model():
